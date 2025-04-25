@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Farm Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #d4fcff, #ffffff);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(to right, #4CAF50, #81C784);
+            color: white;
+            padding: 1em 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        main {
+            padding: 2em;
+        }
+        .humidity {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin: 2em 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .controls {
+            margin-top: 2em;
+        }
+        .button-group {
+            margin: 1em 0;
+        }
+        button {
+            background: linear-gradient(to right, #4CAF50, #81C784);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7em 1.5em;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 0.5em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: linear-gradient(to right, #388E3C, #66BB6A);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background: linear-gradient(to right, #222, #444);
+            color: white;
+            padding: 1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Smart Farm Dashboard</h1>
+    </header>
+    <main>
+        <p>Welcome to Smart Farm! Monitor and control your farm efficiently.</p>
+        <div class="humidity" id="humidity">Loading average humidity...</div>
+        <div class="controls">
+            <div class="button-group">
+                <h3>Watering Control</h3>
+                <button onclick="scheduleAction('Watering')">Schedule Watering</button>
+            </div>
+            <div class="button-group">
+                <h3>Fertilizer Control</h3>
+                <button onclick="scheduleAction('Fertilizing')">Schedule Fertilizing</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Smart Farm Dashboard</p>
+    </footer>
+    <script>
+        // Mock function to simulate fetching average humidity
+        function getAverageHumidity() {
+            const humidityData = [55, 65, 70, 60, 80]; // Mock humidity data
+            const averageHumidity = humidityData.reduce((a, b) => a + b, 0) / humidityData.length;
+            return averageHumidity.toFixed(1); // Return average with 1 decimal place
+        }
+
+        // Function to update the humidity display
+        function updateHumidity() {
+            const humidityElement = document.getElementById('humidity');
+            const averageHumidity = getAverageHumidity();
+            humidityElement.innerText = `Average Humidity: ${averageHumidity}%`;
+        }
+
+        // Function to handle scheduling actions
+        function scheduleAction(action) {
+            const time = prompt(`Enter the time to schedule ${action} (in minutes):`);
+            if (time && !isNaN(time)) {
+                alert(`${action} scheduled in ${time} minutes.`);
+            } else {
+                alert('Invalid time entered. Please try again.');
+            }
+        }
+
+        // Initialize the page
+        updateHumidity();
+    </script>
+</body>
+</html>
